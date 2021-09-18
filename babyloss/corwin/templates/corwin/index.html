@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div>
+    <br>
+    {% include "overview_items.html" with overview_items=overview_items%}
+    <div class="text-center">
+            <img style='width: 100%' class="rounded" src="{% static 'corwin/images/sunset_from_air_cut.jpg' %}" class="img-fluid">
+    </div>
+    <br>
+</div>
+
+{% endblock %}

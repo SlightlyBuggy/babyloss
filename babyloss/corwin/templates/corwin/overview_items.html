@@ -1,0 +1,11 @@
+{% load filters %}
+
+{% if overview_items %}
+    <div>
+        {% for overview_item in overview_items %}
+            <h5 class="text-center">{{ overview_item.title_text }}</h5>
+            <p style="color: #717171" >{{ overview_item.summary_text|spacify }}</p>
+            <br>
+        {% endfor %}
+    </div>
+{% endif %}

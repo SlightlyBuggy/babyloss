@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+    {% load static %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% bootstrap_messages %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'corwin/style.css' %}">
+</head>
+<body>
+<div class="header-footer">
+    <nav class="navbar navbar-expand-lg navbar-light">        
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'corwin:index' %}">The Empty Room</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="main_nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active"> <a class="nav-link" href="#">Baby Loss </a> </li>
+                    <li class="nav-item dropdown" id="myDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Resources</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">For Loss Parents</a></li>
+                            <li><a class="dropdown-item" href="#">For Expecting Parents</a></li>
+                            <li><a class="dropdown-item" href="#">For Providers</a></li>
+                            <li><a class="dropdown-item" href="#">For Doulas</a></li>
+                            <li><a class="dropdown-item" href="#">For Loved Ones</a></li>
+                            <li><a class="dropdown-item" href="#">For Employers</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item active"> <a class="nav-link" href="#">Crowin's Story</a> </li>
+                    <li class="nav-item active"> <a class="nav-link" href="#">About</a> </li>
+                </ul>
+            </div>
+        <!-- navbar-collapse.// -->
+        </div>
+    <!-- container-fluid.// -->
+    </nav>
+</div>
+<div class='content-wrapper'>
+    {% block content %}{% endblock %}
+</div>
+<div class="footer-wrapper header-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <br>
+                <div><p class="note">The information in this (or any) website does not replace guidance from qualified medical professionals. &nbspExpecting parents should <b>always</b> base their decisions on <b>sound medical advice</b> from <b>qualified medical professionals.</b>
+                &nbspParents who have experienced stillbirth should <b>seek professional help</b>, if possible, to cope with this devastating loss.</p></div>
+                <!-- <hr> -->
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <p><b>Contact</b></p>
+                <hr>
+                <p>E-mail</p>
+                <p>Facebook</p>
+            </div>
+            <div class="col-sm">
+                <p><b>Organizations</b></p>
+                <hr>
+                <p>CDC Stillbirth Facts</p>
+                <p>Star Legacy Foundation</p>
+                <p>Push</p>
+                <p>Count The Kicks</p>
+            </div>
+            <div class="col-sm">
+                <p><b>Footer Item Group 3</b></p>
+                <hr>
+                <p>item 1</p>
+                <p>item 2</p>
+                <p>item 3</p>
+            </div>
+            <div class="col-sm">
+                <p><b>Footer Item Group 4</b></p>
+                <hr>
+                <p>item 1</p>
+                <p>item 2</p>
+                <p>item 3</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
