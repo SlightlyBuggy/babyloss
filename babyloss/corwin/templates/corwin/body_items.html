@@ -4,7 +4,7 @@
     <div>
         {% for body_item in body_items %}
             <h5 class="text-center">{{ body_item.title_text }}</h5>
-            <p style="color: #717171" >{{ body_item.summary_text|spacify }}</p>
+            <p style="color: #717171" >{{ body_item.summary_text|spacify|db_links_to_html|linebreaksbr }}</p>
             <br>
         {% endfor %}
     </div>

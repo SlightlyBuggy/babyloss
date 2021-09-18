@@ -8,7 +8,7 @@ OVERVIEW_NAME = 'overview'
 BODY_NAME = 'body'
 
 
-def sourcify(page_items):
+def overview_body_and_sources(page_items):
 
     # keep track of sources referenced in the text
     source_pattern = re.compile('(\\[source http.*?\\])')
