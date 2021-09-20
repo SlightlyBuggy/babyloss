@@ -9,6 +9,9 @@
             <img style='width: 100%' class="rounded" src="{% static 'corwin/images/sunset_from_air_cut.jpg' %}" class="img-fluid">
     </div>
     <br>
+    {% if source_list|length != 0 %}
+        {% include "page_sources.html" %}
+    {% endif %}
 </div>
 
 {% endblock %}

@@ -8,7 +8,7 @@ OVERVIEW_NAME = 'overview'
 BODY_NAME = 'body'
 
 
-def overview_body_and_sources(page_items):
+def create_page_text_contents(page_items):
 
     # keep track of sources referenced in the text
     source_pattern = re.compile('(\\[source http.*?\\])')
@@ -37,7 +37,9 @@ def overview_body_and_sources(page_items):
                 source_dict[source_key]['url'], source_dict[source_key]['source_num']))
             item.summary_text = mark_safe(new_text)
 
+    source_list = sorted([item for item in source_dict.values()], key=lambda x: x['source_num'])
+
     context = {'overview_items': [item for item in page_items if item.topic_type.topic_type == OVERVIEW_NAME],
                'body_items': [item for item in page_items if item.topic_type.topic_type == BODY_NAME],
-               'sources': source_dict}
+               'source_list': source_list}
     return context
