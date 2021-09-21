@@ -1,14 +1,14 @@
 <div>
-  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#source_items" aria-expanded="true" aria-controls="source_items">
-    Sources
+  <button id="sources_button" class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#source_items" aria-expanded="true" aria-controls="source_items">
+    Show Sources
   </button>
+
   <div class="collapse" id="source_items">
     {% for source_item in source_list %}
-    test
         <div>
-            <div>{{ source_item.source_num}}</div>
-            <div><a href="{{source_item.url}}" target="_blank">{{source_item.url}}</a>
+            {{ source_item.source_num}}: {{source_item.hyperlink_tag}}
         </div>
     {% endfor %}
     </div>
 </div>
+<br>
