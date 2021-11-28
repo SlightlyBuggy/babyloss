@@ -4,7 +4,12 @@ from .models import PageName, PageHeadingTopic, TopicType
 
 class PageHeadingTopicAdmin(admin.ModelAdmin):
 
-    list_display = ('title_text', 'page', 'topic_type')
+    list_display = ('page', 'topic_type', 'title_text')
+    fieldsets = (
+        (None, {
+            'fields': ('page', 'topic_type', 'title_text', 'summary_text')
+        }),
+    )
 
 
 class TopicTypeAdmin(admin.ModelAdmin):

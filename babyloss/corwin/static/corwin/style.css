@@ -11,9 +11,14 @@
     font-size: 0.8rem;
 }
 
-/* .footer-wrapper hr {
+.page-title {
+    text-align: center;
+}
+
+.topic-text {
     color: #717171;
-} */
+    font-size: 1rem;
+}
 
 .content-wrapper {
     padding-left: 15px;

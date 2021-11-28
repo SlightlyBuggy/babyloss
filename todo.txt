@@ -1,0 +1,10 @@
+add source list view
+
+figure out style for body items
+
+hosting:
+- add to lightsail
+- firewall
+- domain name
+
+figure out deploy strategy

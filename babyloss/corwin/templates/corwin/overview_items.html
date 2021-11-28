@@ -4,7 +4,7 @@
     <div>
         {% for overview_item in overview_items %}
             <h5 class="text-center">{{ overview_item.title_text }}</h5>
-            <p style="color: #717171" >{{ overview_item.summary_text|spacify|db_links_to_html|linebreaksbr }}</p>
+            <p class="topic-text" >{{ overview_item.summary_text|spacify|db_links_to_html|linebreaksbr }}</p>
             <br>
         {% endfor %}
     </div>
