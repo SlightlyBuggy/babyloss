@@ -5,12 +5,7 @@
 <h3 class="page-title">About Baby Loss</h3>
 <div>
     <br>
-    {% include "overview_items.html" with overview_items=overview_items%}
-    {% comment %} <div class="text-center">
-            <img style='width: 100%' class="rounded" src="{% static 'corwin/images/sunset_from_air_cut.jpg' %}" class="img-fluid">
-    </div> {% endcomment %}
-    <br>
-    {% include "body_items.html" with body_items=body_items%}
+    {% include "page_topics.html" with page_topics=page_topics%}
     <br>
     {% if source_list|length != 0 %}
         {% include "page_sources.html" %}

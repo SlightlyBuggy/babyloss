@@ -1,15 +1,17 @@
 from django.contrib import admin
-from .models import PageName, PageHeadingTopic, TopicType
+from .models import PageName, PageTopic, TopicType
 
 
-class PageHeadingTopicAdmin(admin.ModelAdmin):
+class PageTopicAdmin(admin.ModelAdmin):
 
-    list_display = ('page', 'topic_type', 'title_text')
+    list_display = ('page', 'topic_type', 'title_text', 'page_order')
     fieldsets = (
         (None, {
-            'fields': ('page', 'topic_type', 'title_text', 'summary_text')
+            'fields': ('page', 'page_order', 'topic_type', 'title_text', 'summary_text')
         }),
     )
+    ordering = ['page_order']
+    list_filter = ('page', 'topic_type')
 
 
 class TopicTypeAdmin(admin.ModelAdmin):
@@ -17,6 +19,6 @@ class TopicTypeAdmin(admin.ModelAdmin):
     list_display = ['topic_type']
 
 
-admin.site.register(PageHeadingTopic, PageHeadingTopicAdmin)
+admin.site.register(PageTopic, PageTopicAdmin)
 admin.site.register(PageName)
 admin.site.register(TopicType, TopicTypeAdmin)

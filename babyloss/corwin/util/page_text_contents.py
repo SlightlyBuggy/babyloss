@@ -4,8 +4,6 @@ from django.utils.safestring import mark_safe
 SOURCE_KEYWORD = 'source'
 SOURCE_START_DELIM = '['
 SOURCE_END_DELIM = ']'
-OVERVIEW_NAME = 'overview'
-BODY_NAME = 'body'
 LINK_MAX_CHARS = 30
 
 
@@ -40,8 +38,7 @@ def create_page_text_contents(page_items):
 
     source_list = sorted([item for item in source_dict.values()], key=lambda x: x.source_num)
 
-    context = {'overview_items': [item for item in page_items if item.topic_type.topic_type == OVERVIEW_NAME],
-               'body_items': [item for item in page_items if item.topic_type.topic_type == BODY_NAME],
+    context = {'page_topics': page_items,
                'source_list': source_list}
     return context
 

@@ -28,11 +28,11 @@ register.filter(spacify)
 @register.filter(needs_autoescape=False)
 def db_links_to_html(text, autoescape=False):
 
-    link_pattern = re.compile('(\\[link "\\w+" http.*?\\])')
+    link_pattern = re.compile('(\\[link ".+" http.*?\\])')
     link_matches = link_pattern.findall(text)
 
     for link_match in link_matches:
-        link_spl = link_match.replace(LINK_START_DELIM, '').replace(LINK_END_DELIM, '').split(' ')
+        link_spl = link_match.replace(LINK_START_DELIM, '').replace(LINK_END_DELIM, '').split('"')
         new_link_text = mark_safe('<a href="{0}" target="_blank">{1}</a>'.format(link_spl[2], link_spl[1].replace('"', '')))
         text = text.replace(link_match, new_link_text)
 

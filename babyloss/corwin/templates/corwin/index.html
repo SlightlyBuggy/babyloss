@@ -4,10 +4,10 @@
 {% block content %}
 <div>
     <br>
-    {% include "overview_items.html" with overview_items=overview_items%}
-    <div class="text-center">
+    {% include "page_topics.html" with page_topics=page_topics%}
+    {% comment %} <div class="text-center">
             <img style='width: 100%' class="rounded" src="{% static 'corwin/images/sunset_from_air_cut.jpg' %}" class="img-fluid">
-    </div>
+    </div> {% endcomment %}
     <br>
     {% if source_list|length != 0 %}
         {% include "page_sources.html" %}

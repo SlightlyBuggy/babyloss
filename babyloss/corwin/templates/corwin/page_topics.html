@@ -1,0 +1,20 @@
+{% load filters %}
+{% load static %}
+{% static "" as baseUrl %}
+{% if page_topics %}
+    <div>
+        {% for page_topic in page_topics %}
+            {% if page_topic.topic_type.topic_type == "text" %}
+                <h5 class="text-center">{{ page_topic.title_text }}</h5>
+                <p class="topic-text" >{{ page_topic.summary_text|spacify|db_links_to_html|linebreaksbr }}</p>
+                <br>
+            {% elif page_topic.topic_type.topic_type == "image" %}
+                <div class="text-center">
+                    <img style='width: 100%' class="rounded" src="{{ baseUrl }}corwin/images/{{page_topic.summary_text}}" class="img-fluid">
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% else %}
+<h4 class="page-title">This page is under construction</h3>
+{% endif %}

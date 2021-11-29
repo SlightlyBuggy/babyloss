@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from .models import PageHeadingTopic
+from .models import PageTopic
 from corwin.util.page_text_contents import create_page_text_contents
 
 
 def index(request):
 
-    page_items = PageHeadingTopic.objects.filter(page__page_name='home')
+    page_items = PageTopic.objects.filter(page__page_name='home').order_by('page_order')
 
     context = create_page_text_contents(page_items)
 
@@ -14,7 +14,7 @@ def index(request):
 
 def babyloss(request):
 
-    page_items = PageHeadingTopic.objects.filter(page__page_name='babyloss')
+    page_items = PageTopic.objects.filter(page__page_name='babyloss').order_by('page_order')
 
     context = create_page_text_contents(page_items)
 
@@ -23,7 +23,7 @@ def babyloss(request):
 
 def resources_expecting(request):
 
-    page_items = PageHeadingTopic.objects.filter(page__page_name='resources_expecting')
+    page_items = PageTopic.objects.filter(page__page_name='resources_expecting').order_by('page_order')
 
     context = create_page_text_contents(page_items)
 
@@ -32,7 +32,7 @@ def resources_expecting(request):
 
 def resources_loss(request):
 
-    page_items = PageHeadingTopic.objects.filter(page__page_name='resources_loss')
+    page_items = PageTopic.objects.filter(page__page_name='resources_loss').order_by('page_order')
 
     context = create_page_text_contents(page_items)
 
@@ -41,7 +41,7 @@ def resources_loss(request):
 
 def resources_doulas(request):
 
-    page_items = PageHeadingTopic.objects.filter(page__page_name='resources_doulas')
+    page_items = PageTopic.objects.filter(page__page_name='resources_doulas').order_by('page_order')
 
     context = create_page_text_contents(page_items)
 
@@ -50,7 +50,7 @@ def resources_doulas(request):
 
 def resources_providers(request):
 
-    page_items = PageHeadingTopic.objects.filter(page__page_name='resources_providers')
+    page_items = PageTopic.objects.filter(page__page_name='resources_providers').order_by('page_order')
 
     context = create_page_text_contents(page_items)
 
@@ -59,7 +59,7 @@ def resources_providers(request):
 
 def resources_loved(request):
 
-    page_items = PageHeadingTopic.objects.filter(page__page_name='resources_loved')
+    page_items = PageTopic.objects.filter(page__page_name='resources_loved').order_by('page_order')
 
     context = create_page_text_contents(page_items)
 
@@ -68,7 +68,7 @@ def resources_loved(request):
 
 def resources_employers(request):
 
-    page_items = PageHeadingTopic.objects.filter(page__page_name='resources_employers')
+    page_items = PageTopic.objects.filter(page__page_name='resources_employers').order_by('page_order')
 
     context = create_page_text_contents(page_items)
 
@@ -77,7 +77,7 @@ def resources_employers(request):
 
 def corwin_story(request):
 
-    page_items = PageHeadingTopic.objects.filter(page__page_name='corwin_story')
+    page_items = PageTopic.objects.filter(page__page_name='corwin_story').order_by('page_order')
 
     context = create_page_text_contents(page_items)
 
@@ -86,7 +86,7 @@ def corwin_story(request):
 
 def about(request):
 
-    page_items = PageHeadingTopic.objects.filter(page__page_name='about')
+    page_items = PageTopic.objects.filter(page__page_name='about').order_by('page_order')
 
     context = create_page_text_contents(page_items)
 
