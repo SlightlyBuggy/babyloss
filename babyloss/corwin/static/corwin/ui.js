@@ -2,7 +2,6 @@ var SOURCES_COLLAPSED_TEXT = "Show Sources"
 var SOURCES_EXPANDED_TEXT = "Hide Sources"
 
 $(document).ready(function() {
-    console.log("doing this")
     $('#sources_button').text(SOURCES_COLLAPSED_TEXT)
 }) 
 
