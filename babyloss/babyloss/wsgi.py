@@ -11,8 +11,8 @@ import os
 import sys
 from django.core.wsgi import get_wsgi_application
 
-sys.path.append('/opt/bitnami/projects/babyloss')
-os.environ.setdefault("PYTHON_EGG_CACHE", "/opt/bitnami/projects/babyloss/babyloss/egg_cache")
+sys.path.append('/opt/bitnami/projects/babyloss/babyloss')
+os.environ.setdefault("PYTHON_EGG_CACHE", "/opt/bitnami/projects/babyloss/babyloss/babyloss/egg_cache")
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'babyloss.settings')
 
 application = get_wsgi_application()
