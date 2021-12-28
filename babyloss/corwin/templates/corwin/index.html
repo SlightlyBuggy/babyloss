@@ -3,7 +3,7 @@
 
 {% block content %}
 <div>
-    <br>
+    {% comment %} <br> {% endcomment %}
     {% include "page_topics.html" with page_topics=page_topics%}
     <br>
     {% if source_list|length != 0 %}
