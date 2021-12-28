@@ -4,9 +4,7 @@
 {% block content %}
 <h3 class="page-title">Corwin's Story</h3>
 <div>
-    <br>
     {% include "page_topics.html" with page_topics=page_topics%}
-    <br>
     {% if source_list|length != 0 %}
         {% include "page_sources.html" %}
     {% endif %}
