@@ -2,4 +2,4 @@
 
 git pull https://github.com/SlightlyBuggy/babyloss.git dev
 python manage.py collectstatic --noinput
-~/opt/bitnami/ctlscript.sh restart apache
+/opt/bitnami/ctlscript.sh restart apache
