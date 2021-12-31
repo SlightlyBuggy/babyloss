@@ -21,6 +21,13 @@
     /* font-size: 1rem; */
 }
 
+.caption-text {
+    color: #717171;
+    font-size: 0.8rem;
+    font-style: italic;
+    text-align: center;
+}
+
 .content-wrapper {
     padding-left: 1rem;
     padding-right: 1rem;

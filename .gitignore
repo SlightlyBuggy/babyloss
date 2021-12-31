@@ -1,2 +1,4 @@
 *.pyc
 /.idea
+/babyloss/static
+db.sqlite3

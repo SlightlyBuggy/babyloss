@@ -6,7 +6,7 @@
         {% for page_topic in page_topics %}
             {% if page_topic.topic_type.topic_type == "text" %}
                 <h5 class="text-center">{{ page_topic.title_text }}</h5>
-                <p class="topic-text" >{{ page_topic.summary_text|spacify|db_links_to_html|linebreaksbr }}</p>
+                <div class="topic-text">{{ page_topic.summary_text|spacify|db_links_to_html|linebreaksbr }}</div>
                 <br>
             {% elif page_topic.topic_type.topic_type == "image" %}
                 <div class="text-center">
