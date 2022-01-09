@@ -1,35 +1,58 @@
 import re
+from typing import List
 from django.utils.safestring import mark_safe
+from .. import models
 
-SOURCE_KEYWORD = 'source'
+
 CODE_START_DELIM = '['
 CODE_END_DELIM = ']'
-LINK_MAX_CHARS = 30
+
+# image pattern looks like '[image filenamewihtoutpath.ext]'
 IMAGE_KEYWORD = 'image'
+IMAGE_PATTERN = re.compile('(\\[image \\w+\\.\\w+\\])')
+
+# caption pattern looks like '[caption "caption text here"]'
 CAPTION_KEYWORD = 'caption'
+CAPTION_PATTERN = re.compile('\\[caption \".+\"\\]')
+
+# sources look like '[source https://mysource.something]'
+SOURCE_KEYWORD = 'source'
+SOURCE_PATTERN = re.compile('(\\[source http.*?\\])')
+SOURCE_LINK_MAX_CHARS = 30         # max length for links in sources
 
 
-def create_page_contents(page_items):
+def handle_images(page_item: models.PageTopic):
+    image_matches = IMAGE_PATTERN.findall(page_item.summary_text)
 
+    # replace image patterns with image HTML
+    for image_match in image_matches:
+        image_file = image_match.split(' ')[1].replace(CODE_END_DELIM, '')
+        image_html = '<div style="text-align:center"><img style="width: 60%" class="rounded" ' \
+                     'src="static/corwin/images/{0}" class="img-fluid"></div>'.format(image_file)
+        page_item.summary_text = page_item.summary_text.replace(image_match, image_html)
+
+
+def handle_captions(page_item: models.PageTopic):
+    caption_matches = CAPTION_PATTERN.findall(page_item.summary_text)
+
+    # replace captions with caption text
+    for caption_match in caption_matches:
+        caption_text = caption_match.replace(CAPTION_KEYWORD, '')\
+            .replace(CODE_START_DELIM, '')\
+            .replace(CODE_END_DELIM,'')\
+            .replace('"','')
+
+        caption_html = '<div class="caption-text">{0}</div>'.format(caption_text)
+        page_item.summary_text = page_item.summary_text.replace(caption_match, caption_html)
+
+
+def build_source_list(page_items: List[models.PageTopic]):
     # keep track of sources referenced in the text
-    source_pattern = re.compile('(\\[source http.*?\\])')
     source_dict = {}
     source_num = 0
 
-    # look for images in the text
-    image_pattern = re.compile('(\\[image \\w+\\.\\w+\\])')
-
-    # look for image captions in the text
-    caption_pattern = re.compile('\\[caption \".+\"\\]')
-
-    # TODO: refactor so each operation has its own function
-    # iterate through the text for each text block
     for item in page_items:
-        source_matches = source_pattern.findall(item.summary_text)
-        image_matches = image_pattern.findall(item.summary_text)
-        caption_matches = caption_pattern.findall(item.summary_text)
-
-        # create dict of source patterns
+        source_matches = SOURCE_PATTERN.findall(item.summary_text)
         for source_match in source_matches:
             source_match_spl = source_match.replace(CODE_START_DELIM, '').replace(CODE_END_DELIM, '').split(' ')
 
@@ -41,20 +64,6 @@ def create_page_contents(page_items):
                     source_num += 1
                     source_dict[source_match] = Hyperlink(source_num=source_num, url=url)
 
-        # replace image patterns with image HTML
-        for image_match in image_matches:
-            image_file = image_match.split(' ')[1].replace(CODE_END_DELIM,'')
-            image_html = '<div style="text-align:center"><img style="width: 60%" class="rounded" ' \
-                         'src="static/corwin/images/{0}" class="img-fluid"></div>'.format(image_file)
-            item.summary_text = item.summary_text.replace(image_match, image_html)
-
-        # replace captions with caption text
-        for caption_match in caption_matches:
-            caption_text = caption_match.replace(CAPTION_KEYWORD, '').replace(CODE_START_DELIM, '').replace(CODE_END_DELIM, '').replace('"','')
-            caption_html = '<div class="caption-text">{0}</div>'.format(caption_text)
-            item.summary_text = item.summary_text.replace(caption_match, caption_html)
-
-    # make another pass through the items and replace the source patterns with the HTMl we want
     for item in page_items:
         for source_key in source_dict:
             new_text = item.summary_text.replace(source_key, '<sup><a href="{0}" target="_blank">{1}</a></sup>'.format(
@@ -66,10 +75,42 @@ def create_page_contents(page_items):
 
     source_list = sorted([item for item in source_dict.values()], key=lambda x: x.source_num)
 
-    context = {'page_topics': page_items,
-               'source_list': source_list}
+    return source_list
+
+
+def create_page_contents(page_items: List[models.PageTopic]):
+    """
+
+    :param page_items:list of PageTopic items
+    :return: Dict of parsed page topics and source dict
+    """
+    # TODO: look for a way to reduce number of loops through the page_items
+
+    # iterate through the text for each text block
+    for item in page_items:
+
+        # handle images
+        handle_images(item)
+
+        # handle captions
+        handle_captions(item)
+
+    source_list = build_source_list(page_items)
+
+    # mark safe all html
+    for item in page_items:
+        item.summary_text = mark_safe(item.summary_text)
+
+    # context = PageContext(page_items, source_list)
+    context = {'page_topics': page_items, 'source_list': source_list}
     return context
 
+
+# class PageContext:
+#     def __init__(self, page_items: List[models.PageTopic], source_list: List[object]):
+#
+#         self.page_items = page_items
+#         self.source_list = source_list
 
 class Hyperlink:
     max_display_chars = 30
