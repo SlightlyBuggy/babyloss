@@ -70,7 +70,7 @@ def build_source_list(page_items: List[models.PageTopic]):
 
     for item in page_items:
         for source_key in source_dict:
-            new_text = item.summary_text.replace(source_key, '<sup><a href="{0}" target="_blank">{1}</a></sup>'.format(
+            new_text = item.summary_text.replace(source_key, '<sup><a href="{0}" target="_blank">[{1}]</a></sup>'.format(
                 source_dict[source_key].url, source_dict[source_key].source_num))
             item.summary_text = new_text
 
