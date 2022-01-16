@@ -9,16 +9,20 @@ CODE_END_DELIM = ']'
 
 # image pattern looks like '[image filenamewihtoutpath.ext]'
 IMAGE_KEYWORD = 'image'
-IMAGE_PATTERN = re.compile('(\\[image \\w+\\.\\w+\\])')
+IMAGE_PATTERN = re.compile('(\\[{0} \\w+\\.\\w+\\])'.format(IMAGE_KEYWORD))
 
 # caption pattern looks like '[caption "caption text here"]'
 CAPTION_KEYWORD = 'caption'
-CAPTION_PATTERN = re.compile('\\[caption \".+\"\\]')
+CAPTION_PATTERN = re.compile('\\[{0} \".+\"\\]'.format(CAPTION_KEYWORD))
 
 # sources look like '[source https://mysource.something]'
 SOURCE_KEYWORD = 'source'
-SOURCE_PATTERN = re.compile('(\\[source http.*?\\])')
+SOURCE_PATTERN = re.compile('(\\[{0} http.*?\\])'.format(SOURCE_KEYWORD))
 SOURCE_LINK_MAX_CHARS = 30         # max length for links in sources
+
+# links look like '[link "link text" https://nonsource.something]'
+LINK_KEYWORD = 'link'
+LINK_PATTERN = re.compile('(\\[{0} \".+\" http.*?\\])'.format(LINK_KEYWORD))
 
 
 def handle_images(page_item: models.PageTopic):
@@ -62,7 +66,7 @@ def build_source_list(page_items: List[models.PageTopic]):
                 url = source_match_spl[1]
                 if source_match not in source_dict:
                     source_num += 1
-                    source_dict[source_match] = Hyperlink(source_num=source_num, url=url)
+                    source_dict[source_match] = SourceHyperlink(source_num=source_num, url=url)
 
     for item in page_items:
         for source_key in source_dict:
@@ -76,6 +80,17 @@ def build_source_list(page_items: List[models.PageTopic]):
     source_list = sorted([item for item in source_dict.values()], key=lambda x: x.source_num)
 
     return source_list
+
+
+def handle_links(page_item: models.PageTopic):
+    link_matches = LINK_PATTERN.findall(page_item.summary_text)
+
+    # replace image patterns with image HTML
+    for link_match in link_matches:
+        text = link_match.split(' ')[1].replace(CODE_END_DELIM, '')
+        url = link_match.split(' ')[2].replace(CODE_END_DELIM, '')
+        url_html = '<a href="{0}" target="_blank">{1}</a>'.format(url, text)
+        page_item.summary_text = page_item.summary_text.replace(link_match, url_html)
 
 
 def create_page_contents(page_items: List[models.PageTopic]):
@@ -112,7 +127,7 @@ def create_page_contents(page_items: List[models.PageTopic]):
 #         self.page_items = page_items
 #         self.source_list = source_list
 
-class Hyperlink:
+class SourceHyperlink:
     max_display_chars = 30
 
     def __init__(self, source_num, url):
