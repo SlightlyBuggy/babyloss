@@ -27,7 +27,7 @@ class TopicType(models.Model):
 class PageTopic(models.Model):
     page = models.ForeignKey(PageName, on_delete=models.DO_NOTHING)
     title_text = models.CharField(max_length=200)
-    summary_text = models.TextField(max_length=2000)
+    summary_text = models.TextField(max_length=200000)
     topic_type = models.ForeignKey(TopicType, on_delete=models.DO_NOTHING, default=1)
     page_order = models.IntegerField(default=0)
 
