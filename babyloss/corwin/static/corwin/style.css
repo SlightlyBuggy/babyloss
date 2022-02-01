@@ -16,9 +16,23 @@
     color:#717171
 }
 
+.topic-container {
+    display: grid;
+    grid-template-columns: fit-content(900px);
+    grid-template-areas: 
+        "header"
+        "topic";
+    justify-content: center;
+}
+
 .topic-text {
+    grid-area: topic;
     color: #717171;
-    /* font-size: 1rem; */
+}
+
+.header-text {
+    grid-area: header;
+    text-align: center;
 }
 
 .caption-text {
@@ -44,6 +58,7 @@
 .header-footer, button #sources_button {
     background-color: #3162cc44;
 }
+
 /* 
 button #sources_button{
     background-color: #3162cc44;

@@ -5,11 +5,13 @@
     <div>
         {% for page_topic in page_topics %}
             {% if page_topic.topic_type.topic_type == "text" %}
-                <h5 class="text-center">{{ page_topic.title_text }}</h5>
+            <div class="topic-container">
+                <h5 class="header-text">{{ page_topic.title_text }}</h5>
                 <div class="topic-text">{{ page_topic.summary_text|spacify|db_links_to_html|linebreaksbr }}</div>
                 <br>
+            </div>
             {% elif page_topic.topic_type.topic_type == "image" %}
-                <div class="text-center">
+                <div>
                     <img style='width: 100%' class="rounded" src="{{ baseUrl }}corwin/images/{{page_topic.summary_text}}" class="img-fluid">
                 </div>
             {% endif %}
