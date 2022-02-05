@@ -15,70 +15,74 @@
     <link rel="alternate icon" type="image/png" href="{% static 'corwin/icons/Baby Angel SVG Cricut Silhouette.svg' %}"/>
 </head>
 <body>
-<div class="header-footer">
-    <nav class="navbar navbar-expand-lg navbar-light">        
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'corwin:index' %}">Hope Cradle</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="main_nav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active"> <a class="nav-link" href="{% url 'corwin:babyloss' %}">Baby Loss</a> </li>
-                    <li class="nav-item dropdown" id="myDropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Resources and Advice</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'corwin:resources_loss' %}">For Loss Parents</a></li>
-                            <li><a class="dropdown-item" href="{% url 'corwin:resources_expecting' %}">For Expecting Parents</a></li>
-                            <li><a class="dropdown-item" href="{% url 'corwin:resources_providers' %}">For Providers</a></li>
-                            <li><a class="dropdown-item" href="{% url 'corwin:resources_doulas' %}">For Doulas</a></li>
-                            <li><a class="dropdown-item" href="{% url 'corwin:resources_loved' %}">For Loved Ones</a></li>
-                            <li><a class="dropdown-item" href="{% url 'corwin:resources_employers' %}">For Employers</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item active"> <a class="nav-link" href="{% url 'corwin:corwin_story' %}">Corwin's Story</a> </li>
-                    <li class="nav-item active"> <a class="nav-link" href="{% url 'corwin:about' %}">About</a> </li>
-                </ul>
+<div class="header-footer header-outer-container">
+    <div class="header-inner-container">
+        <nav class="navbar navbar-expand-lg navbar-light header-navbar">        
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'corwin:index' %}">Hope Cradle</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main_nav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active"> <a class="nav-link" href="{% url 'corwin:babyloss' %}">Baby Loss</a> </li>
+                        <li class="nav-item dropdown" id="myDropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Resources and Advice</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'corwin:resources_loss' %}">For Loss Parents</a></li>
+                                <li><a class="dropdown-item" href="{% url 'corwin:resources_expecting' %}">For Expecting Parents</a></li>
+                                <li><a class="dropdown-item" href="{% url 'corwin:resources_providers' %}">For Providers</a></li>
+                                <li><a class="dropdown-item" href="{% url 'corwin:resources_doulas' %}">For Doulas</a></li>
+                                <li><a class="dropdown-item" href="{% url 'corwin:resources_loved' %}">For Loved Ones</a></li>
+                                <li><a class="dropdown-item" href="{% url 'corwin:resources_employers' %}">For Employers</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item active"> <a class="nav-link" href="{% url 'corwin:corwin_story' %}">Corwin's Story</a> </li>
+                        <li class="nav-item active"> <a class="nav-link" href="{% url 'corwin:about' %}">About</a> </li>
+                    </ul>
+                </div>
+            <!-- navbar-collapse.// -->
             </div>
-        <!-- navbar-collapse.// -->
-        </div>
-    <!-- container-fluid.// -->
-    </nav>
+        <!-- container-fluid.// -->
+        </nav>
+    </div>
 </div>
 <div class='content-wrapper'>
     {% block content %}{% endblock %}
 </div>
-<div class="footer-wrapper header-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <br>
-                <div><p class="note">The information in this (or any) website does not replace guidance from qualified medical professionals. &nbspExpecting parents should <b>always</b> base their decisions on <b>sound medical advice</b> from <b>qualified medical professionals.</b>
-                &nbspParents who have experienced stillbirth should <b>seek professional help</b>, if possible, to cope with this devastating loss.</p></div>
-                <br>
+<div class="header-footer footer-outer-container">
+    <div class="footer-inner-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <br>
+                    <div><p class="note">The information in this (or any) website does not replace guidance from qualified medical professionals. &nbspExpecting parents should <b>always</b> base their decisions on <b>sound medical advice</b> from <b>qualified medical professionals.</b>
+                    &nbspParents who have experienced stillbirth should <b>seek professional help</b>, if possible, to cope with this devastating loss.</p></div>
+                    <br>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <p><b>Baby Loss Prevention</b></p>
-                <hr>
-                <p><a href="https://www.cdc.gov/ncbddd/stillbirth/facts.html" target="_blank">CDC Stillbirth Facts</a></p>
-                <p><a href="https://starlegacyfoundation.org" target="_blank">Star Legacy Foundation</a></p>
-                <p><a href="https://www.pushpregnancy.org/" target="_blank">Push</a></p>
-                <p><a href="https://countthekicks.org/" target="_blank">Count The Kicks</a></p>
+            <div class="row">
+                <div class="col-sm">
+                    <p><b>Baby Loss Prevention</b></p>
+                    <hr>
+                    <p><a href="https://www.cdc.gov/ncbddd/stillbirth/facts.html" target="_blank">CDC Stillbirth Facts</a></p>
+                    <p><a href="https://starlegacyfoundation.org" target="_blank">Star Legacy Foundation</a></p>
+                    <p><a href="https://www.pushpregnancy.org/" target="_blank">Push</a></p>
+                    <p><a href="https://countthekicks.org/" target="_blank">Count The Kicks</a></p>
+                </div>
+                <div class="col-sm">
+                    <p><b>Grief</b></p>
+                    <hr>
+                    <p><a href="https://refugeingrief.com/" target="_blank">Refuge In Grief</a></p>
+                    <p><a href="https://read.amazon.com/kp/embed?asin=B01MXLRP37&preview=newtab&linkCode=kpe&ref_=cm_sw_r_kb_dp_ZZJA99FJPGTEJ38ZNHQ7">Empty Cradle, Broken Heart</a></p>
+                </div>
+                {% comment %} <div class="col-sm">
+                    <p><b>Contact</b></p>
+                    <hr>
+                    <p>E-mail</p>
+                    <p>Facebook</p>
+                </div> {% endcomment %}
             </div>
-            <div class="col-sm">
-                <p><b>Grief</b></p>
-                <hr>
-                <p><a href="https://refugeingrief.com/" target="_blank">Refuge In Grief</a></p>
-                <p><a href="https://read.amazon.com/kp/embed?asin=B01MXLRP37&preview=newtab&linkCode=kpe&ref_=cm_sw_r_kb_dp_ZZJA99FJPGTEJ38ZNHQ7">Empty Cradle, Broken Heart</a></p>
-            </div>
-            {% comment %} <div class="col-sm">
-                <p><b>Contact</b></p>
-                <hr>
-                <p>E-mail</p>
-                <p>Facebook</p>
-            </div> {% endcomment %}
         </div>
     </div>
 </div>

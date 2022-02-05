@@ -1,14 +1,16 @@
 <br>
-<div>
-  <button id="sources_button" class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#source_items" aria-expanded="true" aria-controls="source_items">
-    Show Sources
-  </button>
-  <div class="collapse" id="source_items">
-    {% for source_item in source_list %}
-        <div>
-            {{ source_item.source_num}}: {{source_item.hyperlink_tag}}
+<div class="sources-button-outer-container">
+  <div class="sources-button-inner-container">
+      <button id="sources_button" class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#source_items" aria-expanded="true" aria-controls="source_items">
+        Show Sources
+      </button>
+      <div class="collapse" id="source_items">
+        {% for source_item in source_list %}
+            <div>
+                {{ source_item.source_num}}: {{source_item.hyperlink_tag}}
+            </div>
+        {% endfor %}
         </div>
-    {% endfor %}
-    </div>
+      </div>
 </div>
 <br>
