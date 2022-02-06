@@ -11,8 +11,10 @@
                 <br>
             </div>
             {% elif page_topic.topic_type.topic_type == "image" %}
-                <div>
-                    <img style='width: 100%' class="rounded" src="{{ baseUrl }}corwin/images/{{page_topic.summary_text}}" class="img-fluid">
+                <div class="standalone-image-outer-container">
+                    <div class="standalone-image-inner-container">
+                        <img style='width: 100%' class="rounded" src="{{ baseUrl }}corwin/images/{{page_topic.summary_text}}" class="img-fluid">
+                    </div>
                 </div>
             {% endif %}
         {% endfor %}

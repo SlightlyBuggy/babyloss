@@ -31,8 +31,8 @@ def handle_images(page_item: models.PageTopic):
     # replace image patterns with image HTML
     for image_match in image_matches:
         image_file = image_match.split(' ')[1].replace(CODE_END_DELIM, '')
-        image_html = '<div style="text-align:center"><img style="width: 60%" class="rounded" ' \
-                     'src="static/corwin/images/{0}" class="img-fluid"></div>'.format(image_file)
+        image_html = '<div style="text-align:center"><img class="rounded inline-image inline-image-transition" ' \
+                     'src="static/corwin/images/{0}"></div>'.format(image_file)
         page_item.summary_text = page_item.summary_text.replace(image_match, image_html)
 
 

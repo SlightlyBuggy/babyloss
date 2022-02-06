@@ -1,4 +1,3 @@
-
 .page-title {
     text-align: center;
     color:#717171
@@ -79,5 +78,33 @@
 }
 #sources_button {
     font-size: 0.8rem;
+}
+
+/* standalone images take up same width as other elements */
+.standalone-image-outer-container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: "standalone-image";
+}
+.standalone-image-inner-container {
+    max-width: 900px;
+    grid-area: standalone-image;
+}
+
+/* inline images are responsive and take up less space on bigger screens, more on smaller ones */
+.inline-image-transition {
+    transition: ease all 0.5s;
+}
+
+@media (min-width: 1px) {
+    .inline-image {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .inline-image {
+        width: 60%;
+    }
 }
 
